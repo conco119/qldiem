@@ -40,6 +40,7 @@
 	$('#password').blur(function() {
 		$('label[for="password"]').removeClass('selected');
 	});
+	document.getElementById("bootstrap").href = "#";
 </script>
 
 </html>
