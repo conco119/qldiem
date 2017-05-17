@@ -181,6 +181,6 @@ class vsc_pdo {
 	}
 
 }
-  $exp = new vsc_pdo("localhost,root,,diem");
+  $exp = new vsc_pdo("localhost,root,baanhem,diem");
 
  ?>

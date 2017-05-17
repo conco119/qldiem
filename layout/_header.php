@@ -13,6 +13,7 @@
 	<!-- Custom Stylesheet -->
 	<link rel="stylesheet" href="style/style.css">
 	<link id="bootstrap" rel="stylesheet" href="style/css/bootstrap.min.css">
+	<link id="gv" rel="stylesheet" href="#">
   <!-- jquery -->
 	<script src="style/js/jquery.min.js"></script>
   <script src="style/js/bootstrap.min.js"></script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th5 16, 2017 lúc 12:47 PM
+-- Thời gian đã tạo: Th5 18, 2017 lúc 04:51 PM
 -- Phiên bản máy phục vụ: 5.7.18
 -- Phiên bản PHP: 5.6.30
 
@@ -158,6 +158,7 @@ CREATE TABLE `giangvien` (
   `gioitinh` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `manganh` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `role` varchar(128) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -165,8 +166,9 @@ CREATE TABLE `giangvien` (
 -- Đang đổ dữ liệu cho bảng `giangvien`
 --
 
-INSERT INTO `giangvien` (`magv`, `tengv`, `ngaysinh`, `gioitinh`, `email`, `password`, `role`) VALUES
-('GV1', 'Nguyễn Thái Sơn', '2017-05-03', 'Nam', 'sonnt@gmail.com', 'GV1', '1');
+INSERT INTO `giangvien` (`magv`, `tengv`, `ngaysinh`, `gioitinh`, `email`, `password`, `manganh`, `role`) VALUES
+('AD0', 'Cao Trung Kiên', '2017-05-09', 'Nam', 'trungkien@gmail.com', 'AD0', 'HTTT', '2'),
+('GV1', 'Đỗ Bảo Sơn', '2017-05-03', 'Nam', 'sonnt@gmail.com', 'GV1', 'HTTT', '1');
 
 -- --------------------------------------------------------
 
@@ -227,8 +229,7 @@ CREATE TABLE `khoa` (
 INSERT INTO `khoa` (`makhoa`, `tenkhoa`) VALUES
 ('CD', 'Cầu đường'),
 ('CNTT', 'Công nghệ thông tin'),
-('DT', 'Điện tử'),
-('KT', 'Kinh tế');
+('DT', 'Điện tử');
 
 -- --------------------------------------------------------
 
@@ -267,8 +268,7 @@ CREATE TABLE `lop` (
 --
 
 INSERT INTO `lop` (`malop`, `tenlop`, `manganh`, `namnhaphoc`) VALUES
-('65DCHT22', '65DCHT22', 'HTTT', '2014'),
-('65DCKT21', '65DCKT21', 'KTVT', '2014');
+('65DCHT22', '65DCHT22', 'HTTT', '2014');
 
 -- --------------------------------------------------------
 
@@ -289,7 +289,6 @@ CREATE TABLE `nganh` (
 
 INSERT INTO `nganh` (`manganh`, `tennganh`, `sonamdt`, `makhoa`) VALUES
 ('HTTT', 'Hệ thống thông tin', '4', 'CNTT'),
-('KTVT', 'Kinh tế vận tải', '4', 'KT'),
 ('OT', 'Ô tô', '4.5', 'DT'),
 ('TTM', 'Truyền thông mạng', '4', 'CNTT');
 
@@ -344,7 +343,8 @@ ALTER TABLE `ctbangdiem`
 -- Chỉ mục cho bảng `giangvien`
 --
 ALTER TABLE `giangvien`
-  ADD PRIMARY KEY (`magv`);
+  ADD PRIMARY KEY (`magv`),
+  ADD KEY `giangvien_fk0` (`manganh`);
 
 --
 -- Chỉ mục cho bảng `hocky`
@@ -411,6 +411,12 @@ ALTER TABLE `ctbangdiem`
   ADD CONSTRAINT `ctbangdiem_fk3` FOREIGN KEY (`magv`) REFERENCES `giangvien` (`magv`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ctbangdiem_fk4` FOREIGN KEY (`malanhoc`) REFERENCES `lanhoc` (`malanhoc`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ctbangdiem_fk5` FOREIGN KEY (`mabd`) REFERENCES `bangdiem` (`mabd`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `giangvien`
+--
+ALTER TABLE `giangvien`
+  ADD CONSTRAINT `giangvien_fk0` FOREIGN KEY (`manganh`) REFERENCES `nganh` (`manganh`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `lop`
