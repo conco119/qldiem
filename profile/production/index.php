@@ -70,7 +70,7 @@ if(empty($_SESSION["masv"]))
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Sinh viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php">Thông tin cá nhân</a></li>
+                      <li><a href="gv_index.php">Thông tin cá nhân</a></li>
                       <li><a href="taikhoan.php">Đổi mật khẩu</a></li>
                       <li><a href="bangdiem.php">Bảng điểm</a></li>
                     </ul>
@@ -147,15 +147,14 @@ if(empty($_SESSION["masv"]))
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="index.php"> Thông tin cá nhân</a></li>
                     <li>
                       <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
+                        <span>Cài đặt</span>
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>
 

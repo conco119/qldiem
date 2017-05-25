@@ -84,7 +84,7 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
                       <li><a href="admin_add_lop.php">Thêm lớp</a></li>
                       <li><a href="admin_add_sinhvien.php">Thêm sinh viên</a></li>
                       <li><a href="admin_add_hocky.php">Thêm học kỳ</a></li>
-                      <li><a href="form_buttons.html">Thêm giảng viên</a></li>
+                      <li><a href="admin_add_giangvien.php">Thêm giảng viên</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>

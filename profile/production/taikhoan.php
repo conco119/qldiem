@@ -147,15 +147,14 @@ if(empty($_SESSION["masv"]))
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="index.php"> Thông tin cá nhân</a></li>
                     <li>
                       <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
+                        <span>Cài đặt</span>
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>
 
@@ -185,14 +184,14 @@ if(empty($_SESSION["masv"]))
                 <div class="col-md-8 col-md-offset-3 " >
 
 
-                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                  <form method="post" action="../sinhvien/cpw.php" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                     <h3 class=" text-center">Đổi mật khẩu</h3>
 
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mật khẩu cũ
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="password" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                        <input name="old-pass" type="password" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
                       </div>
                     </div>
 
@@ -200,14 +199,14 @@ if(empty($_SESSION["masv"]))
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mật khẩu mới
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="password" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                        <input type="password" id="last-name" name="new-pass" required="required" class="form-control col-md-7 col-xs-12">
                       </div>
                     </div>
 
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Nhập lại mật khẩu mới</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="password" name="middle-name">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="password" name="c-pass">
                       </div>
                     </div>
 
@@ -215,12 +214,32 @@ if(empty($_SESSION["masv"]))
 
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <button type="submit" class="btn btn-success">Đổi mật khẩu</button>
+                        <button type="submit" class="btn btn-success" name="submit">Đổi mật khẩu</button>
                       </div>
+
                     </div>
 
-                  </form>
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <br>
+                        <?php
+                          switch($_GET["id"])
+                            {
+                              case 1:
+                                echo "<p style='color:#04d404'>"."Đổi mật khẩu thành công"."</p>";
+                                break;
+                              case 2:
+                                echo "<p style='color:red'>"."Mật khẩu mới không trùng nhau"."</p>";
+                                break;
+                              case 3:
+                                echo "<p style='color:red'>"."Mật khẩu cũ không chính xác"."</p>";
+                                break;
+                            }
+                         ?>
+                      </div>
 
+                    </div>
+                  </form>
                   </div>
                 <!-- page content -->
               </div>

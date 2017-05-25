@@ -1,16 +1,17 @@
 <?php
 session_start();
-if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
+if(empty($_SESSION["magv"]))
   header("location:../../gv.php");
 
  ?>
 <?php require '../../model/DBPDO.php'; ?>
 
 <?php
-  $sql2 = "SELECT * FROM giangvien where magv= '{$_SESSION['magv']}'";
-  $sql  = "SELECT * FROM khoa ";
-  $r = $exp->fetch_all($sql);
-  $info = $exp->fetch_one($sql2);
+  $sql  = "SELECT * FROM sinhvien,lop,nganh,khoa WHERE sinhvien.masv = '{$_SESSION['masv']}' and sinhvien.malop = lop.malop
+    and lop.manganh = nganh.manganh and nganh.makhoa = khoa.makhoa";
+    $sql2 ="select * from sinhvien";
+  $r = $exp->fetch_one($sql);
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,7 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Thêm khoa</title>
+    <title>Đổi mật khẩu</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -55,7 +56,7 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
 
               <div class="profile_info">
                 <span>Xin chào</span>
-                <h2><?php echo $info["tengv"]; ?></h2>
+                <h2><?php echo $r["tensv"]; ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -65,21 +66,23 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
+                <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="glyphicon glyphicon-user"></i> Giảng viên <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-home"></i> Sinh viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="admin_index.php">Thông tin cá nhân</a></li>
-                      <li><a href="admin_cpw.php">Đổi mật khẩu</a></li>
+                      <li><a href="index.php">Thông tin cá nhân</a></li>
+                      <li><a href="taikhoan.php">Đổi mật khẩu</a></li>
+                      <li><a href="bangdiem.php">Bảng điểm</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> Thêm <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="admin_add_khoa.php">Thêm khoa</a></li>
-                      <li><a href="admin_add_nganh.php">Thêm ngành</a></li>
-                      <li><a href="admin_add_lop.php">Thêm lớp</a></li>
-                      <li><a href="admin_add_sinhvien.php">Thêm sinh viên</a></li>
-                      <li><a href="admin_add_hocky.php">Thêm học kỳ</a></li>
-                      <li><a href="admin_add_giangvien.php">Thêm giảng viên</a></li>
+                      <li><a href="form.html">General Form</a></li>
+                      <li><a href="form_advanced.html">Advanced Components</a></li>
+                      <li><a href="form_validation.html">Form Validation</a></li>
+                      <li><a href="form_wizards.html">Form Wizard</a></li>
+                      <li><a href="form_upload.html">Form Upload</a></li>
+                      <li><a href="form_buttons.html">Form Buttons</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
@@ -140,17 +143,17 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/gv/<?php echo $info["magv"]; ?>.jpg" alt=""><?php echo $info["tengv"]; ?>
+                    <img src="images/sv/<?php echo $r["masv"]; ?>.jpg" alt=""><?php echo $r["tensv"]; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Thông tin cá nhân</a></li>
+                    <li><a href="index.php"> Thông tin cá nhân</a></li>
                     <li>
                       <a href="javascript:;">
                         <span>Cài đặt</span>
                       </a>
                     </li>
-                    <li><a href="javascript:;">Trợ giúp</a></li>
+                    <li><a href="javascript:;">Help</a></li>
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>
@@ -173,93 +176,78 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
         <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" > -->
           <div class="col-md-8 col-md-offset-3 " >
 
-            <div class="x_panel">
-              <div class="x_title">
-                <h2>Thêm Khoa</h2>
-                <div class="clearfix"></div>
-              </div>
-              <div class="x_content">
-                <br />
-                <form method="post" action="../khoa/add.php" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã Khoa
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input name="makhoa" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+
+
+              <div class="row">
+
+                <div class="col-md-8 col-md-offset-3 " >
+
+
+                  <form method="post" action="../sinhvien/cpw.php" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <h3 class=" text-center">Đổi mật khẩu</h3>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mật khẩu cũ
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input name="old-pass" type="password" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên Khoa
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="tenkhoa" required="required" class="form-control col-md-7 col-xs-12">
+
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mật khẩu mới
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="password" id="last-name" name="new-pass" required="required" class="form-control col-md-7 col-xs-12">
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="ln_solid"></div>
-                  <div class="form-group">
-                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                      <button class="btn btn-primary" type="submit" name="submit">Thêm</button>
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Nhập lại mật khẩu mới</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="password" name="c-pass">
+                      </div>
                     </div>
+
+
+
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" class="btn btn-success" name="submit">Đổi mật khẩu</button>
+                      </div>
+
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <br>
+                        <?php
+                          switch($_GET["id"])
+                            {
+                              case 1:
+                                echo "<p style='color:#04d404'>"."Đổi mật khẩu thành công"."</p>";
+                                break;
+                              case 2:
+                                echo "<p style='color:red'>"."Mật khẩu mới không trùng nhau"."</p>";
+                                break;
+                              case 3:
+                                echo "<p style='color:red'>"."Mật khẩu cũ không chính xác"."</p>";
+                                break;
+                            }
+                         ?>
+                      </div>
+
+                    </div>
+                  </form>
                   </div>
-
-                </form>
+                <!-- page content -->
               </div>
-            </div>
-            <!-- end x panel -->
 
-            <div class="x_panel">
-              <div class="x_title">
-                <h2>Danh sách khoa</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Settings 1</a>
-                      </li>
-                      <li><a href="#">Settings 2</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-              </div>
-              <div class="x_content">
 
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th class="info">STT</th>
-                      <th class="info">Mã khoa</th>
-                      <th class="info">Tên khoa</th>
-                      <td colspan="2" class="info">Action</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($r as $key => $value) {
 
-                     ?>
-                    <tr>
-                      <th scope="row"><?php echo $key; ?></th>
-                      <td><?php echo $value["makhoa"]; ?></td>
-                      <td><?php echo $value["tenkhoa"]; ?></td>
-                      <td><a href="../khoa/delete.php?id=<?php echo $value['makhoa']; ?>" onclick="return confirm('Chắc chắn xóa?')"><button type="button" name="button" class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>
-                      <td><a href="../khoa/edit.php?id=<?php echo $value['makhoa']; ?>"><button type="button" name="button" class="btn btn-primary"><i class="fa fa-wrench"></i></button></a></td>
-                    </tr>
-                    <?php } ?>
-                  </tbody>
-                </table>
-
-              </div>
-            </div>
-              <!-- list khoa -->
+          </div>
         </div>
-
       </div>
     </div>
 
