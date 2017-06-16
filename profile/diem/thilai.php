@@ -68,65 +68,10 @@ if(empty($_SESSION["magv"]))
                 <form method="post"  id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã sinh viên
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Điểm thi lại
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input readonly name="masv" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["masv"]; ?>">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã học phần
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="mahp" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["mahp"]; ?>">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên học phần
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="tenhp" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["tenhp"]; ?>">
-                    </div>
-                  </div>
-
-
-
-
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Điểm chuyên cần
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="diemcc" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["diemcc"]; ?>">
-                    </div>
-                  </div>
-
-
-
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Điểm giữa kì
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="diemgk" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["diemgk"]; ?>">
-                    </div>
-                  </div>
-
-
-
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Điểm thi kết thúc
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="diemkt" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["diemkt"]; ?>">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Điểm tổng kết
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input readonly type="text" id="last-name" name="tongket" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["tongket"]; ?>">
+                      <input  name="diemthilai" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["diemthilai"]; ?>">
                     </div>
                   </div>
 
@@ -137,8 +82,6 @@ if(empty($_SESSION["magv"]))
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                       <a href="../production/gv_nhapdiem.php" ><button class="btn btn-default" type="button"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></a>
                       <button class="btn btn-primary" type="submit" name="submit">Cập nhật</button>
-                      <a href="thilai.php?masv=<?php echo $_GET['masv']."&"."mahp=".$_GET['mahp']; ?>"><button class="btn btn-primary" type="button" name="submit">Cập nhật điểm thi lại</button></a>
-                      <a href="caithien.php?masv=<?php echo $_GET['masv']."&"."mahp=".$_GET['mahp']; ?>"><button style="margin-left:50px;margin-top:20px" class="btn btn-primary" type="button" name="submit">Cập nhật điểm cải thiện</button></a>
 
                     </div>
                   </div>
@@ -160,10 +103,10 @@ if(empty($_SESSION["magv"]))
           if(isset($_POST["submit"]))
           {
 
-                  $data['diemcc'] = $_POST['diemcc'];
-                  $data['diemgk'] = $_POST['diemgk'];
-                  $data['diemkt'] = $_POST['diemkt'];
-                  $data['tongket'] = $data['diemcc']/10 + $data['diemgk']/5 + ($data['diemkt']*7)/10;
+                  $data['diemcc'] = $r['diemcc'];
+                  $data['diemgk'] = $r['diemgk'];
+                  $data['diemthilai'] = $_POST['diemthilai'];
+                  $data['tongket'] = $data['diemcc']/10 + $data['diemgk']/5 + ($data['diemthilai']*7)/10;
                     if($data['tongket'] < 4)
                     {
                       $data["diemchu"] = "F";
@@ -207,7 +150,6 @@ if(empty($_SESSION["magv"]))
                   $exp->update("ctbangdiem",$data,$where);
                   header("location: ../production/gv_nhapdiem.php");
                 }
-
 
 
           ?>

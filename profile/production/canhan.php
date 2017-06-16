@@ -203,6 +203,7 @@ if(empty($_SESSION["masv"]))
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <br>
                         <?php
+                          if(isset($_GET['id']))
                           switch($_GET["id"])
                             {
                               case 1:

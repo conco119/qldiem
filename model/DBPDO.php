@@ -5,7 +5,7 @@ $host = "localhost";
 //Tài khoản PHP myadmin
 $tentaikhoan = "root";
 // mật khẩu PHP myadmin
-$matkhau = "";
+$matkhau = "conco";
 //Tên cơ sở dữ liệu
 $db = "diem";
 

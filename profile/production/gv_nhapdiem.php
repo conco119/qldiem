@@ -22,9 +22,7 @@ if(empty($_SESSION["magv"]))
 //show hoc ky
   $sql_hocky ="SELECT * FROM hocky";
   $hocky = $exp->fetch_all($sql_hocky);
-// show lan hoc
-$sql_lanhoc ="SELECT * FROM lanhoc";
-$lanhoc = $exp->fetch_all($sql_lanhoc);
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -245,13 +243,7 @@ $lanhoc = $exp->fetch_all($sql_lanhoc);
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Điểm thực hành
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="diemth" name="password" required="required" class="form-control col-md-7 col-xs-12">
-                    </div>
-                  </div>
+
 
                   <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Điểm thi cuối kì
@@ -293,13 +285,12 @@ $lanhoc = $exp->fetch_all($sql_lanhoc);
                   <thead>
                     <tr>
                       <th class="bold">STT</th>
-                      <th class="bold">Mã sinh viên</th>
+                      <th class="bold">Mã SV</th>
                       <th class="bold">Mã học phần</th>
-                      <th class="bold">Học kỳ</th>
+                      <th class="bold">Tên HP</th>
                       <td class="bold">Điểm chuyên cần</td>
                       <td class="bold">Điểm giữa kì</td>
-                      <td class="bold">Điểm thực hành</td>
-                      <td class="bold">Điểm kiếm tra</td>
+                      <td class="bold">Điểm kết thúc</td>
                       <td class="bold">Điểm tổng kết</td>
                       <td class="bold">Điểm chữ</td>
                       <td class="bold">Điểm thi lại</td>
@@ -388,7 +379,6 @@ $lanhoc = $exp->fetch_all($sql_lanhoc);
             mahocky: $('#hocky').val(),
             diemcc: $('#diemcc').val(),
             diemgk: $('#diemgk').val(),
-            diemth: $('#diemth').val(),
             diemkt: $('#diemkt').val()
           },
           success: function(result){

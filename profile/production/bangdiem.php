@@ -67,7 +67,7 @@ $bangdiem = $exp->fetch_all($sql_bangdiem);
             <!-- /menu profile quick info -->
 
             <br />
-
+            <input id="masv" type="hidden" name="" value="<?php echo $r["masv"]; ?>">
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
@@ -127,31 +127,41 @@ $bangdiem = $exp->fetch_all($sql_bangdiem);
         <div class="container page-content">
           <div class="row">
             <div class="col-md-9 col-md-offset-2" >
+              <select id="diem" class="form-control" name="" style="width:200px">
+                <option slected hidden>Chọn</option>
+                <option value="F">Môn chưa đạt</option>
+                <option value="D">Môn đạt điểm D</option>
+                <option value="D+">Môn đạt điểm D+</option>
+                <option value="C">Môn đạt điểm C</option>
+                <option value="C+">Môn đạt điểm C+</option>
+                <option value="B">Môn đạt điểm B</option>
+                <option value="B+">Môn đạt điểm B+</option>
+                <option value="A">Môn đạt điểm A</option>
+              </select>
               <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th class="blue">STT</th>
                     <th class="blue">Mã học phần</th>
                     <th class="blue">Tên học phần</th>
-                    <th class="blue">Lần học</th>
                     <th class="blue">Đánh giá</th>
                     <th class="blue">Số TC</th>
                     <th class="blue">Điểm chuyên cần</th>
                     <th class="blue">Điểm giữa kì</th>
-                    <th class="blue">Điểm thực hành</th>
                     <th class="blue">Điểm thi kết thúc</th>
                     <th class="blue">Điểm tổng kết</th>
                     <th class="blue">Điểm chữ</th>
+                    <th class="blue">Điểm thi lại</th>
+                    <th class="blue">Điểm cải thiện</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="body-table">
 
                   <?php foreach($bangdiem as $key => $value): ?>
                   <tr>
                     <th scope="row"><?php  echo $key; ?></th>
                     <td><?php echo $value['mahp']; ?></td>
                     <td><?php  echo $value['tenhp']; ?></td>
-                    <td><?php echo $value['malanhoc']; ?></td>
                     <td>
                       <?php if($value['diemchu'] != "F")
                               echo "Đạt";
@@ -163,10 +173,11 @@ $bangdiem = $exp->fetch_all($sql_bangdiem);
                     <td><?php echo $value['sotc']; ?></td>
                     <td><?php echo $value['diemcc']; ?></td>
                     <td><?php echo $value['diemgk']; ?></td>
-                    <td><?php echo $value['diemth']; ?></td>
                     <td><?php echo $value['diemkt']; ?></td>
                     <td><?php echo $value['tongket']; ?></td>
                     <td><?php echo $value['diemchu']; ?></td>
+                    <td><?php echo $value['diemthilai']; ?></td>
+                    <td><?php echo $value['diemct']; ?></td>
                   </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -189,6 +200,22 @@ $bangdiem = $exp->fetch_all($sql_bangdiem);
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+    $('#diem').change(function(){
+      $.ajax({
+        url: "../ajax/bangdiem.php",
+        type: "post",
+        dataType: "text",
+        data:{
+          diem: $('#diem').val(),
+          masv: $('#masv').val()
+        },
+        success: function(result){
+            $('#body-table').html(result);
+        }
+      });
+    });
+    </script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->

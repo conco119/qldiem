@@ -7,7 +7,6 @@
   $data["mahocky"] = $_POST["mahocky"];
   $data["diemcc"] = $_POST["diemcc"];
   $data["diemgk"] = $_POST["diemgk"];
-  $data["diemth"] = $_POST["diemth"];
   $data["diemkt"] = $_POST["diemkt"];
 
   $sql = "SELECT * FROM ctbangdiem WHERE masv = '{$data['masv']}' and mahp = '{$data['mahp']}'";
