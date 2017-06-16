@@ -140,6 +140,7 @@ if(empty($_SESSION["masv"]))
               <div class="row">
 
                 <div class="col-md-3 col-lg-3 " align="center">
+
                 <form method="post" enctype="multipart/form-data" action="../sinhvien/update-avatar.php">
 
                   <img id="avatar" width="200px" height="auto" alt="User Pic" src="data:image/jpeg;base64,<?php echo base64_encode($r['avatar']); ?>" class=" img-responsive"/>
@@ -151,6 +152,7 @@ if(empty($_SESSION["masv"]))
                   <button id="save" style="display:none" type="submit" name="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok">Lưu</i></button>
 
                 </form>
+                
                 </div>
 
                 <div class=" col-md-9 col-lg-9 ">

@@ -148,17 +148,12 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/gv/<?php echo $info["magv"]; ?>.jpg" alt=""><?php echo $info["tengv"]; ?>
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($info['avatar']); ?>" alt=""><?php echo $info["tengv"]; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Thông tin cá nhân</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span>Cài đặt</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Trợ giúp</a></li>
+                    <li><a href="admin_index.php"> Thông tin cá nhân</a></li>
+
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>

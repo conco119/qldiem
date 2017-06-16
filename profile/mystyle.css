@@ -11,3 +11,7 @@
 .white{
   color:white;
 }
+.bold{
+  font-weight: 600;
+  background: #d9edf7;
+}

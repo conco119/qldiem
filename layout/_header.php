@@ -24,7 +24,7 @@
     <section>
       <div class="container">
         <div class="row">
-          <span><img src="images/utt.png" alt="" width="100px" height="auto"></span><h4>2017 Trường Đại học Công nghệ Giao thông vận tải.</h4>
+          <span><img src="images/utt.png" alt="" width="100px" height="auto"></span><marquee><h4>2017 Trường Đại học Công nghệ Giao thông vận tải.</h4></marquee>
         </div>
       </div>
     </section>

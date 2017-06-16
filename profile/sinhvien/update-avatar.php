@@ -8,15 +8,15 @@ ob_start();
   //   $where="masv = '{$_POST['masv']}'";
   //   echo $exp->update("sinhvien",$data,$where);
   // }
+require ('../../model/DBPDO.PHP');
+  $connect = mysqli_connect($host, $tentaikhoan, $matkhau, $db);
+   if(isset($_POST["submit"]))
+   {
+      echo "dm";
+        $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
+        $query = "UPDATE  sinhvien SET avatar = '$file' where masv = '{$_POST['masv']}' ";
+        mysqli_query($connect, $query);
 
-  $connect = mysqli_connect("localhost", "root", "conco", "diem");
- if(isset($_POST["submit"]))
- {
-    echo "dm";
-      $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
-      $query = "UPDATE  sinhvien SET avatar = '$file' where masv = '{$_POST['masv']}' ";
-      mysqli_query($connect, $query);
-
-      header("location:../production/index.php");
- }
+        header("location:../production/index.php");
+   }
  ?>

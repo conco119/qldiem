@@ -1,4 +1,18 @@
+<?php
 
+// Tên miền host
+$host = "localhost";
+//Tài khoản PHP myadmin
+$tentaikhoan = "root";
+// mật khẩu PHP myadmin
+$matkhau = "";
+//Tên cơ sở dữ liệu
+$db = "diem";
+
+
+
+
+ ?>
  <?php
 class vsc_pdo {
 
@@ -109,7 +123,25 @@ class vsc_pdo {
 				$sql = "INSERT INTO $table (" . implode(", ", array_keys($data)) . ") VALUES (:" . implode(", :", array_keys($data)) . ")";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute($data);
+        //return true;
 				return $this->conn->lastInsertId();
+		} catch (PDOException $e) {
+			return false;
+		}
+	}
+
+  function insert2($table, $data) {
+		try {
+			if (count($data) == 0)
+				return false;
+				$sql = "INSERT INTO $table (" . implode(", ", array_keys($data)) . ") VALUES (:" . implode(", :", array_keys($data)) . ")";
+				$stmt = $this->conn->prepare($sql);
+				if($stmt->execute($data))
+          return true;
+        else
+          return false;
+        //return true;
+				//return $this->conn->lastInsertId();
 		} catch (PDOException $e) {
 			return false;
 		}
@@ -181,6 +213,6 @@ class vsc_pdo {
 	}
 
 }
-  $exp = new vsc_pdo("localhost,root,conco,diem");
-
+  //$exp = new vsc_pdo("$host,$tentaikhoan,$matkhau,$db");
+  $exp = new vsc_pdo("$host,$tentaikhoan,$matkhau,$db");
  ?>

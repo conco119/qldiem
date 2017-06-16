@@ -1,15 +1,14 @@
 <?php
 session_start();
-if(empty($_SESSION["magv"]))
-  header("location:../../gv.php");
+if(empty($_SESSION["masv"]))
+  header("location:../../login.php");
 
  ?>
 <?php require '../../model/DBPDO.php'; ?>
 
 <?php
-  $sql  = "SELECT * FROM giangvien,nganh,khoa WHERE giangvien.magv = '{$_SESSION['magv']}'
-    and giangvien.manganh = nganh.manganh
-    and nganh.makhoa = khoa.makhoa";
+  $sql  = "SELECT * FROM sinhvien,lop,nganh,khoa WHERE sinhvien.masv = '{$_SESSION['masv']}' and sinhvien.malop = lop.malop
+    and lop.manganh = nganh.manganh and nganh.makhoa = khoa.makhoa";
     $sql2 ="select * from sinhvien";
   $r = $exp->fetch_one($sql);
 
@@ -23,7 +22,7 @@ if(empty($_SESSION["magv"]))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Giảng viên</title>
+    <title>Chỉnh sửa thông tin cá nhân</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +56,7 @@ if(empty($_SESSION["magv"]))
 
               <div class="profile_info">
                 <span>Xin chào</span>
-                <h2><?php echo $r["tengv"]; ?></h2>
+                <h2><?php echo $r["tensv"]; ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -67,18 +66,16 @@ if(empty($_SESSION["magv"]))
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+                <h3>Thông tin</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i>Giảng viên &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="fa fa-chevron-down"></span></a>
+                  <li><a ><i class="fa fa-home"></i> Sinh viên &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="gv_index.php">Thông tin cá nhân</a></li>
-                      <li><a href="gv_cpw.php">Đổi mật khẩu</a></li>
-                      <li><a href="gv_nhapdiem.php">Nhập điểm</a></li>
+                      <li><a href="index.php">Thông tin cá nhân</a></li>
+                      <li><a href="taikhoan.php">Đổi mật khẩu</a></li>
+                      <li><a href="bangdiem.php">Bảng điểm</a></li>
+                      <li><a href="canhan.php">Chỉnh sửa thông tin cá nhân</a></li>
                     </ul>
                   </li>
-
-
-
 
                 </ul>
               </div>
@@ -104,11 +101,11 @@ if(empty($_SESSION["magv"]))
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="data:image/jpeg;base64,<?php echo base64_encode($r['avatar']); ?>" alt=""><?php echo $r["tengv"]; ?>
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($r['avatar']); ?>" alt=""><?php echo $r["tensv"]; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="gv_index.php"> Thông tin cá nhân</a></li>                  
+                    <li><a href="index.php"> Thông tin cá nhân</a></li>
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>
@@ -132,81 +129,102 @@ if(empty($_SESSION["magv"]))
           <div class="col-md-8 col-md-offset-3 " >
 
 
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title"><?php echo $r['tensv']; ?></h3>
-            </div>
-            <div class="panel-body">
+
+
               <div class="row">
 
-                <div class="col-md-3 col-lg-3 " align="center">
-                  <form method="post" enctype="multipart/form-data" action="../giangvien/update-avatar.php">
+                <div class="col-md-8 col-md-offset-3 " >
 
-                    <img id="avatar" width="200px" height="auto" alt="User Pic" src="data:image/jpeg;base64,<?php echo base64_encode($r['avatar']); ?>" class=" img-responsive"/>
-                    <input id="anhdaidien" style="display:none" type="file" name="image">
-                    <input type="hidden" name="magv" value="<?php echo $r["magv"]; ?>">
-                    <br>
 
-                    <button type="button" id="suaanh" class="btn btn-warning">Sửa ảnh</button>
-                    <button id="save" style="display:none" type="submit" name="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok">Lưu</i></button>
+                  <form method="post" action="../sinhvien/update-ttcn.php" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <h3 class=" text-center">Thông tin cá nhân</h3>
 
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã sinh viên
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input name="masv" type="text" id="first-name" readonly required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r['masv']; ?>">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên sinh viên
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" readonly id="last-name"  required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r['tensv']; ?>">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input  class="form-control col-md-7 col-xs-12" type="text" name="ngaysinh" value="<?php echo $r['ngaysinh']; ?>">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input  class="form-control col-md-7 col-xs-12" type="text" name="gioitinh" value="<?php echo $r['gioitinh']; ?>">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input  class="form-control col-md-7 col-xs-12" type="text" name="diachi" value="<?php echo $r['diachi']; ?>">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Số điện thoại</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input  class="form-control col-md-7 col-xs-12" type="text" name="sdt"  value="<?php echo $r['sdt']; ?>">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input  class="form-control col-md-7 col-xs-12" type="text" name="email" value="<?php echo $r['email']; ?>">
+                      </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" class="btn btn-success" name="submit">Submit</button>
+                      </div>
+
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <br>
+                        <?php
+                          switch($_GET["id"])
+                            {
+                              case 1:
+                                echo "<p style='color:#04d404'>"."Đổi mật khẩu thành công"."</p>";
+                                break;
+                              case 2:
+                                echo "<p style='color:red'>"."Mật khẩu mới không trùng nhau"."</p>";
+                                break;
+                              case 3:
+                                echo "<p style='color:red'>"."Mật khẩu cũ không chính xác"."</p>";
+                                break;
+                            }
+                         ?>
+                      </div>
+
+                    </div>
                   </form>
-                </div>
-                <div class=" col-md-9 col-lg-9 ">
-                  <table class="table table-user-information">
-                    <tbody>
-
-
-                      <tr>
-                        <td>Mã giảng viên:</td>
-                        <td><?php echo $r['magv']; ?></td>
-                      </tr>
-
-                      <tr>
-                        <td>Tên giảng viên:</td>
-                        <td><?php echo $r['tengv']; ?></td>
-                      </tr>
-                      <tr>
-                        <td>Ngày sinh</td>
-                        <td><?php echo $r['ngaysinh']; ?></td>
-                      </tr>
-                      <tr>
-                        <td>Giới tính:</td>
-                        <td><?php echo $r['gioitinh']; ?></td>
-                      </tr>
-
-                        <tr>
-                        <td>Khoa:</td>
-                        <td><?php echo $r["tenkhoa"]; ?></td>
-                      </tr>
-
-                        <tr>
-                        <td>Chuyên Ngành:</td>
-                        <td><?php echo $r["tennganh"]; ?></td>
-                      </tr>
-                      <tr>
-                        <td>Email:</td>
-                        <td><a href="mailto:info@support.com"><?php echo $r["email"] ?></a></td>
-                      </tr>
-
-
-
-
-                    </tbody>
-                  </table>
-
-                  <!-- <a href="#" class="btn btn-primary">My Sales Performance</a> -->
-                  <!-- <a href="#" class="btn btn-primary">Team Sales Performance</a> -->
-                </div>
+                  </div>
+                <!-- page content -->
               </div>
-            </div>
-                 <!-- <div class="panel-footer">
 
 
-                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-
-                    </div> -->
 
           </div>
         </div>
@@ -223,51 +241,6 @@ if(empty($_SESSION["magv"]))
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-    // save image to dababase
-    $(document).ready(function(){
-      $('#save').click(function(){
-        var image = $('#anhdaidien').val();
-        if(image == ""){
-          alert("Hãy chọn 1 ảnh!");
-          return false;
-        }
-        else{
-          var extension = image.split('.').pop().toLowerCase();
-          if(jQuery.inArray(extension,['gif', 'png', 'jpg', 'jpeg']) == -1){
-            alert("Ảnh không hợp lệ");
-            $('#anhdaidien').val("");
-            return false;
-          }
-        }
-      });
-    });
-    // click button -> select
-      $(document).ready(function(){
-        $('#suaanh').click(function(){
-          $('#anhdaidien').click();
-        });
-      });
-
-      // lay url của ảnh
-      function readURL(input, target){
-        if(input.files && input.files[0]){
-          var reader = new FileReader();
-          var image_target = $(target);
-          reader.onload = function(e){
-            image_target.attr('src',e.target.result).show();
-          }
-          reader.readAsDataURL(input.files[0]);
-          $('#save').css("display","inline-block");
-        }
-      }
-      // preview image
-      $(document).ready(function(){
-        $('#anhdaidien').change(function(){
-          readURL(this,"#avatar");
-        });
-      });
-    </script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->

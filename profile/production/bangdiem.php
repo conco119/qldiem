@@ -11,7 +11,9 @@ if(empty($_SESSION["masv"]))
     and lop.manganh = nganh.manganh and nganh.makhoa = khoa.makhoa";
     $sql2 ="select * from sinhvien";
   $r = $exp->fetch_one($sql);
-
+// show bang diemc
+$sql_bangdiem = "SELECT * from ctbangdiem,hocphan WHERE ctbangdiem.masv = '{$_SESSION['masv']}' and ctbangdiem.mahp = hocphan.mahp ";
+$bangdiem = $exp->fetch_all($sql_bangdiem);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,12 +111,7 @@ if(empty($_SESSION["masv"]))
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="index.php"> Thông tin cá nhân</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span>Cài đặt</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
+
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>
@@ -148,24 +145,30 @@ if(empty($_SESSION["masv"]))
                   </tr>
                 </thead>
                 <tbody>
+
+                  <?php foreach($bangdiem as $key => $value): ?>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row"><?php  echo $key; ?></th>
+                    <td><?php echo $value['mahp']; ?></td>
+                    <td><?php  echo $value['tenhp']; ?></td>
+                    <td><?php echo $value['malanhoc']; ?></td>
+                    <td>
+                      <?php if($value['diemchu'] != "F")
+                              echo "Đạt";
+                            else {
+                              echo "Không đạt";
+                            }
+                       ?>
+                    </td>
+                    <td><?php echo $value['sotc']; ?></td>
+                    <td><?php echo $value['diemcc']; ?></td>
+                    <td><?php echo $value['diemgk']; ?></td>
+                    <td><?php echo $value['diemth']; ?></td>
+                    <td><?php echo $value['diemkt']; ?></td>
+                    <td><?php echo $value['tongket']; ?></td>
+                    <td><?php echo $value['diemchu']; ?></td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
+                <?php endforeach; ?>
                 </tbody>
               </table>
 

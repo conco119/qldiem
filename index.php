@@ -9,6 +9,7 @@
       <li><a href="#">Giới thiệu</a></li>
       <li><a href="#">Hỏi đáp</a></li>
       <li><a href="#">Trợ giúp</a></li>
+      <li><a href="gv.php">Giảng viên</a></li>
       <li>
                             <div class="custom input-group">
                                 <input type="text" class=" form-control" placeholder="Tìm kiếm" />

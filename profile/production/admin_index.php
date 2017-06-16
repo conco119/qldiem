@@ -142,17 +142,11 @@ if(empty($_SESSION["magv"]))
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/gv/<?php echo $r["magv"]; ?>.jpg" alt="Anh loi"><?php echo $r["tengv"]; ?>
+                    <img src="data:image/jpg;base64,<?php echo base64_encode($r['avatar']); ?>" alt="Anh loi"><?php echo $r["tengv"]; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Thông tin cá nhân</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span>Cài đặt</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Trợ giúp</a></li>
+                    <li><a href="admin_index.php"> Thông tin cá nhân</a></li>
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>
@@ -184,9 +178,18 @@ if(empty($_SESSION["magv"]))
               <div class="row">
 
                 <div class="col-md-3 col-lg-3 " align="center">
-                  <img alt="User Pic" src="images/gv/<?php echo $r["magv"]; ?>.jpg" class=" img-responsive">
-                  <br>
-                  <button type="button" name="button" class="btn btn-default">Sửa ảnh</button>
+                  <form method="post" enctype="multipart/form-data" action="../giangvien/update-avatar.php">
+
+                    <img id="avatar" width="200px" height="auto" alt="User Pic" src="data:image/jpeg;base64,<?php echo base64_encode($r['avatar']); ?>" class=" img-responsive"/>
+                    <input id="anhdaidien" style="display:none" type="file" name="image">
+                    <input type="hidden" name="magv" value="<?php echo $r["magv"]; ?>">
+                    <input type="hidden" name="role" value="<?php echo $r['role']; ?>">
+                    <br>
+
+                    <button type="button" id="suaanh" class="btn btn-warning">Sửa ảnh</button>
+                    <button id="save" style="display:none" type="submit" name="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok">Lưu</i></button>
+
+                  </form>
                 </div>
                 <div class=" col-md-9 col-lg-9 ">
                   <table class="table table-user-information">
@@ -236,13 +239,13 @@ if(empty($_SESSION["magv"]))
                 </div>
               </div>
             </div>
-                 <div class="panel-footer">
+                 <!-- <div class="panel-footer">
 
 
                             <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
                             <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
 
-                    </div>
+                    </div> -->
 
           </div>
         </div>
@@ -259,6 +262,53 @@ if(empty($_SESSION["magv"]))
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
+
+        <script type="text/javascript">
+        // save image to dababase
+        $(document).ready(function(){
+          $('#save').click(function(){
+            var image = $('#anhdaidien').val();
+            if(image == ""){
+              alert("Hãy chọn 1 ảnh!");
+              return false;
+            }
+            else{
+              var extension = image.split('.').pop().toLowerCase();
+              if(jQuery.inArray(extension,['gif', 'png', 'jpg', 'jpeg']) == -1){
+                alert("Ảnh không hợp lệ");
+                $('#anhdaidien').val("");
+                return false;
+              }
+            }
+          });
+        });
+
+        // click button -> select
+          $(document).ready(function(){
+            $('#suaanh').click(function(){
+              $('#anhdaidien').click();
+            });
+          });
+
+          // lay url của ảnh
+          function readURL(input, target){
+            if(input.files && input.files[0]){
+              var reader = new FileReader();
+              var image_target = $(target);
+              reader.onload = function(e){
+                image_target.attr('src',e.target.result).show();
+              }
+              reader.readAsDataURL(input.files[0]);
+              $('#save').css("display","inline-block");
+            }
+          }
+          // preview image
+          $(document).ready(function(){
+            $('#anhdaidien').change(function(){
+              readURL(this,"#avatar");
+            });
+          });
+        </script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
