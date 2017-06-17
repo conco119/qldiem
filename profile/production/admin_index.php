@@ -72,6 +72,7 @@ if(empty($_SESSION["magv"]))
                     <ul class="nav child_menu">
                       <li><a href="admin_index.php">Thông tin cá nhân</a></li>
                       <li><a href="admin_cpw.php">Đổi mật khẩu</a></li>
+                      <li><a href="admin_canhan.php">Chỉnh sửa thông tin cá nhân</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Thêm <span class="fa fa-chevron-down"></span></a>
@@ -79,6 +80,7 @@ if(empty($_SESSION["magv"]))
                       <li><a href="admin_add_khoa.php">Thêm khoa</a></li>
                       <li><a href="admin_add_nganh.php">Thêm ngành</a></li>
                       <li><a href="admin_add_lop.php">Thêm lớp</a></li>
+                      <li><a href="admin_add_hocphan.php">Thêm học phần</a></li>
                       <li><a href="admin_add_sinhvien.php">Thêm sinh viên</a></li>
                       <li><a href="admin_add_hocky.php">Thêm học kỳ</a></li>
                       <li><a href="admin_add_giangvien.php">Thêm giảng viên</a></li>

@@ -10,7 +10,6 @@ if(empty($_SESSION["magv"]))
   $sql  = "SELECT * FROM giangvien,nganh,khoa WHERE giangvien.magv = '{$_SESSION['magv']}'
     and giangvien.manganh = nganh.manganh
     and nganh.makhoa = khoa.makhoa";
-    $sql2 ="select * from sinhvien";
   $r = $exp->fetch_one($sql);
 
  ?>
@@ -23,7 +22,7 @@ if(empty($_SESSION["magv"]))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Giảng viên</title>
+    <title>Chỉnh sửa thông tin cá nhân</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -67,18 +66,25 @@ if(empty($_SESSION["magv"]))
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i>Giảng viên &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-home"></i> Giảng viên &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="gv_index.php">Thông tin cá nhân</a></li>
-                      <li><a href="gv_cpw.php">Đổi mật khẩu</a></li>
-                      <li><a href="gv_nhapdiem.php">Nhập điểm</a></li>
+                      <li><a href="admin_index.php">Thông tin cá nhân</a></li>
+                      <li><a href="admin_cpw.php">Đổi mật khẩu</a></li>
+                      <li><a href="admin_canhan.php">Chỉnh sửa thông tin cá nhân</a></li>
                     </ul>
                   </li>
-
-
-
+                  <li><a><i class="fa fa-edit"></i> Thêm <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="admin_add_khoa.php">Thêm khoa</a></li>
+                      <li><a href="admin_add_nganh.php">Thêm ngành</a></li>
+                      <li><a href="admin_add_lop.php">Thêm lớp</a></li>
+                      <li><a href="admin_add_hocphan.php">Thêm học phần</a></li>
+                      <li><a href="admin_add_sinhvien.php">Thêm sinh viên</a></li>
+                      <li><a href="admin_add_hocky.php">Thêm học kỳ</a></li>
+                      <li><a href="admin_add_giangvien.php">Thêm giảng viên</a></li>
+                    </ul>
+                  </li>
 
                 </ul>
               </div>
@@ -108,7 +114,7 @@ if(empty($_SESSION["magv"]))
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="gv_index.php"> Thông tin cá nhân</a></li>
+                    <li><a href="index.php"> Thông tin cá nhân</a></li>
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>
@@ -131,67 +137,80 @@ if(empty($_SESSION["magv"]))
         <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" > -->
           <div class="col-md-8 col-md-offset-3 " >
 
-            <form method="post" action="../giangvien/cpw.php" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-              <h3 class=" text-center">Đổi mật khẩu</h3>
-              <input type="hidden" name="magv" value="<?php echo $r['magv']; ?>">
-              <input type="hidden" name="role" value="<?php echo $r['role']; ?>">
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mật khẩu cũ
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input name="old-pass" type="password" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                </div>
+
+
+
+              <div class="row">
+
+                <div class="col-md-8 col-md-offset-3 " >
+
+
+                  <form method="post" action="../giangvien/update-ttcn.php" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <h3 class=" text-center">Thông tin cá nhân</h3>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã giảng viên
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input name="magv" type="text" id="first-name" readonly required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r['magv']; ?>">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên giảng viên
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" readonly id="last-name"  required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r['tengv']; ?>">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input  class="form-control col-md-7 col-xs-12" type="text" name="ngaysinh" value="<?php echo $r['ngaysinh']; ?>">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input  class="form-control col-md-7 col-xs-12" type="text" name="gioitinh" value="<?php echo $r['gioitinh']; ?>">
+                      </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input  class="form-control col-md-7 col-xs-12" type="text" name="email" value="<?php echo $r['email']; ?>">
+                      </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" class="btn btn-success" name="submit">Submit</button>
+                      </div>
+
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <br>
+
+                      </div>
+
+                    </div>
+                  </form>
+                  </div>
+                <!-- page content -->
               </div>
 
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mật khẩu mới
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="password" id="last-name" name="new-pass" required="required" class="form-control col-md-7 col-xs-12">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Nhập lại mật khẩu mới</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="middle-name" class="form-control col-md-7 col-xs-12" type="password" name="c-pass">
-                </div>
-              </div>
 
 
-
-              <div class="form-group">
-                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <button type="submit" class="btn btn-success" name="submit">Đổi mật khẩu</button>
-                </div>
-
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <br>
-                  <?php
-                    if(isset($_GET['id']))
-                    {
-                      switch($_GET["id"])
-                        {
-                          case 1:
-                            echo "<p style='color:#04d404'>"."Đổi mật khẩu thành công"."</p>";
-                            break;
-                          case 2:
-                            echo "<p style='color:red'>"."Mật khẩu mới không trùng nhau"."</p>";
-                            break;
-                          case 3:
-                            echo "<p style='color:red'>"."Mật khẩu cũ không chính xác"."</p>";
-                            break;
-                        }
-                    }
-                   ?>
-                </div>
-
-              </div>
-            </form>
-
+          </div>
         </div>
       </div>
     </div>
@@ -206,7 +225,6 @@ if(empty($_SESSION["magv"]))
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
-
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->

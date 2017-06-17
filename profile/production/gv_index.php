@@ -108,7 +108,7 @@ if(empty($_SESSION["magv"]))
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="gv_index.php"> Thông tin cá nhân</a></li>                  
+                    <li><a href="gv_index.php"> Thông tin cá nhân</a></li>
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>
@@ -134,7 +134,7 @@ if(empty($_SESSION["magv"]))
 
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title"><?php echo $r['tensv']; ?></h3>
+              <h3 class="panel-title"><?php echo $r['tengv']; ?></h3>
             </div>
             <div class="panel-body">
               <div class="row">

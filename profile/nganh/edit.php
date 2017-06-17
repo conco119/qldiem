@@ -63,7 +63,7 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
 
             <div class="x_panel">
               <div class="x_title">
-                <h2>Thêm Ngành</h2>
+                <h2>Sửa Ngành</h2>
                 <div class="clearfix"></div>
               </div>
               <div class="x_content">

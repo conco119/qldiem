@@ -175,18 +175,21 @@ if(empty($_SESSION["masv"]))
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <br>
                         <?php
-                          switch($_GET["id"])
-                            {
-                              case 1:
-                                echo "<p style='color:#04d404'>"."Đổi mật khẩu thành công"."</p>";
-                                break;
-                              case 2:
-                                echo "<p style='color:red'>"."Mật khẩu mới không trùng nhau"."</p>";
-                                break;
-                              case 3:
-                                echo "<p style='color:red'>"."Mật khẩu cũ không chính xác"."</p>";
-                                break;
-                            }
+                          if(isset($_GET['id']))
+                          {
+                            switch($_GET["id"])
+                              {
+                                case 1:
+                                  echo "<p style='color:#04d404'>"."Đổi mật khẩu thành công"."</p>";
+                                  break;
+                                case 2:
+                                  echo "<p style='color:red'>"."Mật khẩu mới không trùng nhau"."</p>";
+                                  break;
+                                case 3:
+                                  echo "<p style='color:red'>"."Mật khẩu cũ không chính xác"."</p>";
+                                  break;
+                              }
+                          }
                          ?>
                       </div>
 

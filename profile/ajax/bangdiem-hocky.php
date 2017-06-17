@@ -1,7 +1,7 @@
 <?php
 require('../../model/DBPDO.php');
-$sql = "SELECT * FROM ctbangdiem,hocphan WHERE diemchu= '{$_POST['diem']}' and masv='{$_POST['masv']}' and ctbangdiem.mahp = hocphan.mahp";
-if($_POST['diem'] =='all')
+$sql = "SELECT * FROM ctbangdiem,hocphan WHERE mahocky= '{$_POST['mahocky']}' and masv='{$_POST['masv']}' and ctbangdiem.mahp = hocphan.mahp";
+if($_POST['mahocky'] =='all')
 {
   $sql = "SELECT * FROM ctbangdiem,hocphan WHERE  masv='{$_POST['masv']}' and ctbangdiem.mahp = hocphan.mahp";
 

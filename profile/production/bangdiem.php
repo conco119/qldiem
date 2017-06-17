@@ -14,6 +14,9 @@ if(empty($_SESSION["masv"]))
 // show bang diemc
 $sql_bangdiem = "SELECT * from ctbangdiem,hocphan WHERE ctbangdiem.masv = '{$_SESSION['masv']}' and ctbangdiem.mahp = hocphan.mahp ";
 $bangdiem = $exp->fetch_all($sql_bangdiem);
+// show all hoc ky
+$sql_hocky ="SELECT * FROM hocky";
+$hocky = $exp->fetch_all($sql_hocky);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -127,8 +130,10 @@ $bangdiem = $exp->fetch_all($sql_bangdiem);
         <div class="container page-content">
           <div class="row">
             <div class="col-md-9 col-md-offset-2" >
-              <select id="diem" class="form-control" name="" style="width:200px">
+              <h5>Lọc</h5>
+              <select id="diem" class="form-control" name="" style="width:200px;;display:inline-block">
                 <option slected hidden>Chọn</option>
+                <option value="all">All</option>
                 <option value="F">Môn chưa đạt</option>
                 <option value="D">Môn đạt điểm D</option>
                 <option value="D+">Môn đạt điểm D+</option>
@@ -138,12 +143,20 @@ $bangdiem = $exp->fetch_all($sql_bangdiem);
                 <option value="B+">Môn đạt điểm B+</option>
                 <option value="A">Môn đạt điểm A</option>
               </select>
+              <select id="hocky" class="form-control"  style="width:200px ;display:inline-block">
+                <option slected hidden>Chọn</option>
+                <option value="all">All</option>
+                <?php foreach($hocky as $key => $value): ?>
+                  <option value="<?php echo $value['mahocky'] ?>"><?php  echo $value['mahocky']; ?></option>
+                <?php endforeach; ?>
+              </select>
               <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th class="blue">STT</th>
                     <th class="blue">Mã học phần</th>
                     <th class="blue">Tên học phần</th>
+                    <th class="blue">Học kỳ</th>
                     <th class="blue">Đánh giá</th>
                     <th class="blue">Số TC</th>
                     <th class="blue">Điểm chuyên cần</th>
@@ -162,6 +175,7 @@ $bangdiem = $exp->fetch_all($sql_bangdiem);
                     <th scope="row"><?php  echo $key; ?></th>
                     <td><?php echo $value['mahp']; ?></td>
                     <td><?php  echo $value['tenhp']; ?></td>
+                    <td><?php echo $value['mahocky']; ?></td>
                     <td>
                       <?php if($value['diemchu'] != "F")
                               echo "Đạt";
@@ -201,6 +215,7 @@ $bangdiem = $exp->fetch_all($sql_bangdiem);
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript">
+    //  ajax tim kiem theo diem
     $('#diem').change(function(){
       $.ajax({
         url: "../ajax/bangdiem.php",
@@ -208,6 +223,21 @@ $bangdiem = $exp->fetch_all($sql_bangdiem);
         dataType: "text",
         data:{
           diem: $('#diem').val(),
+          masv: $('#masv').val()
+        },
+        success: function(result){
+            $('#body-table').html(result);
+        }
+      });
+    });
+    // ajax tim kiem theo hoc ky
+    $('#hocky').change(function(){
+      $.ajax({
+        url: "../ajax/bangdiem-hocky.php",
+        type: "post",
+        dataType: "text",
+        data:{
+          mahocky: $(this).val(),
           masv: $('#masv').val()
         },
         success: function(result){

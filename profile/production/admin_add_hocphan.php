@@ -8,13 +8,10 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
 
 <?php
 
-  // show thong sinh vien
-  $sql  = "SELECT * FROM sinhvien,lop where sinhvien.malop  = lop.malop ";
+  // show thong tin học kỳ
+  $sql  = "SELECT * FROM hocphan ";
   $r = $exp->fetch_all($sql);
 
-  // lấy thông tin ngành
-  $sql3 = "SELECT * FROM lop";
-  $r3 = $exp->fetch_all($sql3);
 
   // Lây thông tin giảng viên
   $sql2 = "SELECT * FROM giangvien where magv= '{$_SESSION['magv']}'";
@@ -29,7 +26,7 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Thêm sinh viên</title>
+    <title>Thêm học phần</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +46,6 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
     <link rel="stylesheet" href="../mystyle.css">
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
-    <link href="../build/css/mystyle.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -75,7 +71,7 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a><i class="glyphicon glyphicon-user"></i> Giảng viên &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="glyphicon glyphicon-user"></i> Giảng viên&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="admin_index.php">Thông tin cá nhân</a></li>
                       <li><a href="admin_cpw.php">Đổi mật khẩu</a></li>
@@ -87,7 +83,7 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
                       <li><a href="admin_add_khoa.php">Thêm khoa</a></li>
                       <li><a href="admin_add_nganh.php">Thêm ngành</a></li>
                       <li><a href="admin_add_lop.php">Thêm lớp</a></li>
-                    <li><a href="admin_add_hocphan.php">Thêm học phần</a></li>
+                      <li><a href="admin_add_hocphan.php">Thêm học phần</a></li>
                       <li><a href="admin_add_sinhvien.php">Thêm sinh viên</a></li>
                       <li><a href="admin_add_hocky.php">Thêm học kỳ</a></li>
                       <li><a href="admin_add_giangvien.php">Thêm giảng viên</a></li>
@@ -148,94 +144,53 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
 
             <div class="x_panel">
               <div class="x_title">
-                <h2>Thêm sinh viên</h2>
+                <h2>Thêm học phần</h2>
                 <div class="clearfix"></div>
               </div>
               <div class="x_content">
                 <br />
-                <form method="post" action="../sinhvien/add.php" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                <form method="post" action="../hocphan/add.php" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã sinh viên
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã học phần
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input name="masv" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên sinh viên
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="tensv" required="required" class="form-control col-md-7 col-xs-12">
+                      <input name="mahp" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" autocomplete="off">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày sinh
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tên học phần
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="ngaysinh" required="required" class="form-control col-md-7 col-xs-12">
+                      <input name="tenhp" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" autocomplete="off">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Giới tính
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Số tín chỉ
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <div class="radio">
-                        <label>
-                          <input type="radio" checked="" value="Nam" id="optionsRadios1" name="gioitinh"> <span>Nam</span>
-                          <input type="radio" checked="" value="Nữ" id="optionsRadios1" name="gioitinh"> <span>Nữ</span>
-                        <label>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Địa chỉ
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="diachi" required="required" class="form-control col-md-7 col-xs-12">
+                      <input name="sotc" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" autocomplete="off">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Số tiết lý thuyết
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="email" required="required" class="form-control col-md-7 col-xs-12">
+                      <input name="sotietly" type="text" id="first-name"  class="form-control col-md-7 col-xs-12" autocomplete="off">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số điện thoại
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Số tiết thực hành
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="sdt" required="required" class="form-control col-md-7 col-xs-12">
+                      <input name="so_tiet_th" type="text" id="first-name"   class="form-control col-md-7 col-xs-12" autocomplete="off">
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="last-name" name="password" required="required" class="form-control col-md-7 col-xs-12">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Lớp
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <select  name="malop" class="form-control">
-                        <?php foreach ($r3 as $key => $value) {
-                         ?>
-                        <option value="<?php echo $value["malop"]; ?>"><?php echo $value["tenlop"]; ?></option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                  </div>
 
                   <div class="ln_solid"></div>
                   <div class="form-group">
@@ -251,7 +206,7 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
 
             <div class="x_panel">
               <div class="x_title">
-                <h2>Danh sách sinh viên</h2>
+                <h2>Danh sách học phần</h2>
                 <ul class="nav navbar-right panel_toolbox">
                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                   </li>
@@ -266,14 +221,11 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
                   <thead>
                     <tr>
                       <th class="info">STT</th>
-                      <th class="info">Mã sinh viên</th>
-                      <th class="info">Tên sinh viên</th>
-                      <th class="info">Ngày sinh</th>
-                      <td class="info">Giới tính</td>
-                      <td class="info">Địa chỉ</td>
-                      <td class="info">Email</td>
-                      <td class="info">SDT</td>
-                      <td class="info">Password</td>
+                      <th class="info">Mã học phần</th>
+                      <th class="info">Tên học phần</th>
+                      <th class="info">Số tín chỉ</th>
+                      <th class="info">Số tiết lý thuyết</th>
+                      <th class="info">Số tiết thực hành</th>
                       <td colspan="2" class="info">Action</td>
                     </tr>
                   </thead>
@@ -284,16 +236,13 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
                      ?>
                     <tr>
                       <th scope="row"><?php echo $key; ?></th>
-                      <td><?php echo $value["masv"]; ?></td>
-                      <td><?php echo $value["tensv"]; ?></td>
-                      <td><?php echo $value["ngaysinh"]; ?></td>
-                      <td><?php echo $value["gioitinh"]; ?></td>
-                      <td><?php echo $value["diachi"]; ?></td>
-                      <td><?php echo $value["email"]; ?></td>
-                      <td><?php echo $value["sdt"]; ?></td>
-                      <td><?php echo $value["password"]; ?></td>
-                      <td><a href="../sinhvien/delete.php?id=<?php echo $value['masv']; ?>" onclick="return confirm('Chắc chắn xóa?')"><button type="button" name="button" class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>
-                      <td><a href="../sinhvien/edit.php?id=<?php echo $value['masv']; ?>"><button type="button" name="button" class="btn btn-primary"><i class="fa fa-wrench"></i></button></a></td>
+                      <td><?php echo $value["mahp"]; ?></td>
+                      <td><?php echo $value["tenhp"]; ?></td>
+                      <td><?php echo $value["sotc"]; ?></td>
+                      <td><?php echo $value["sotietly"]; ?></td>
+                      <td><?php echo $value["so_tiet_th"]; ?></td>
+                      <td><a href="../hocphan/delete.php?id=<?php echo $value['mahp']; ?>" onclick="return confirm('Chắc chắn xóa?')"><button type="button" name="button" class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>
+                      <td><a href="../hocphan/edit.php?id=<?php echo $value['mahp']; ?>"><button type="button" name="button" class="btn btn-primary"><i class="fa fa-wrench"></i></button></a></td>
                     </tr>
                     <?php } ?>
                   </tbody>

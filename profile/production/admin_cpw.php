@@ -71,6 +71,7 @@ if(empty($_SESSION["magv"]))
                     <ul class="nav child_menu">
                       <li><a href="admin_index.php">Thông tin cá nhân</a></li>
                       <li><a href="admin_cpw.php">Đổi mật khẩu</a></li>
+                      <li><a href="admin_canhan.php">Chỉnh sửa thông tin cá nhân</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Thêm <span class="fa fa-chevron-down"></span></a>
@@ -78,12 +79,13 @@ if(empty($_SESSION["magv"]))
                       <li><a href="admin_add_khoa.php">Thêm khoa</a></li>
                       <li><a href="admin_add_nganh.php">Thêm ngành</a></li>
                       <li><a href="admin_add_lop.php">Thêm lớp</a></li>
+                      <li><a href="admin_add_hocphan.php">Thêm học phần</a></li>
                       <li><a href="admin_add_sinhvien.php">Thêm sinh viên</a></li>
                       <li><a href="admin_add_hocky.php">Thêm học kỳ</a></li>
                       <li><a href="admin_add_giangvien.php">Thêm giảng viên</a></li>
                     </ul>
                   </li>
-                  
+
                 </ul>
               </div>
 
@@ -175,18 +177,21 @@ if(empty($_SESSION["magv"]))
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                   <br>
                   <?php
-                    switch($_GET["id"])
-                      {
-                        case 1:
-                          echo "<p style='color:#04d404'>"."Đổi mật khẩu thành công"."</p>";
-                          break;
-                        case 2:
-                          echo "<p style='color:red'>"."Mật khẩu mới không trùng nhau"."</p>";
-                          break;
-                        case 3:
-                          echo "<p style='color:red'>"."Mật khẩu cũ không chính xác"."</p>";
-                          break;
-                      }
+                    if(isset($_GET['id']))
+                    {
+                      switch($_GET["id"])
+                        {
+                          case 1:
+                            echo "<p style='color:#04d404'>"."Đổi mật khẩu thành công"."</p>";
+                            break;
+                          case 2:
+                            echo "<p style='color:red'>"."Mật khẩu mới không trùng nhau"."</p>";
+                            break;
+                          case 3:
+                            echo "<p style='color:red'>"."Mật khẩu cũ không chính xác"."</p>";
+                            break;
+                        }
+                    }
                    ?>
                 </div>
 

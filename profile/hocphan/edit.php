@@ -7,7 +7,7 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
 <?php require '../../model/DBPDO.php'; ?>
 
 <?php
-  $sql  = "SELECT * FROM hocky where mahocky = '{$_GET['id']}'";
+  $sql  = "SELECT * FROM hocphan where mahp = '{$_GET['id']}'";
   $r = $exp->fetch_one($sql);
 
  ?>
@@ -59,7 +59,7 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
 
             <div class="x_panel">
               <div class="x_title">
-                <h2>Sửa học kỳ</h2>
+                <h2>Sửa học phần</h2>
                 <div class="clearfix"></div>
               </div>
 
@@ -68,16 +68,49 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
                 <form method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Học kỳ
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã học phần
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input name="mahocky" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["mahocky"]; ?>">
+                      <input name="mahp" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["mahp"]; ?>">
                     </div>
+                  </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tên học phần
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input name="tenhp" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["tenhp"]; ?>">
+                      </div>
+                    </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Số tín chỉ
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input name="sotc" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["sotc"]; ?>">
+                        </div>
+                      </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Số tiết lý thuyết
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input name="sotietly" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["sotietly"]; ?>">
+                          </div>
+                        </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Số tiết thực hành
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input name="so_tiet_th" type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $r["so_tiet_th"]; ?>">
+                            </div>
+                          </div>
 
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <a href="../production/admin_add_hocky.php"><button class="btn btn-default" type="button"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></a>
+                        <a href="../production/admin_add_hocphan.php"><button class="btn btn-default" type="button"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></a>
                         <button class="btn btn-primary" type="submit" name="submit">Sửa</button>
                       </div>
                     </div>
@@ -98,10 +131,15 @@ if(empty($_SESSION["magv"]) || $_SESSION["role"]!="2")
         <footer style="background-color:#efefef">
           <?php if(isset($_POST["submit"]))
           {
-            $data["mahocky"] = $_POST["mahocky"];
-            $where = "mahocky = '{$r['mahocky']}'";
-            $exp->update("hocky",$data,$where);
-            echo "<script>"."window.location= '../production/admin_add_hocky.php' "."</script>";
+            $data["mahp"] = $_POST["mahp"];
+            $data["tenhp"] = $_POST["tenhp"];
+            $data["sotc"] = $_POST["sotc"];
+            $data["sotietly"] = $_POST["sotietly"];
+            $data["so_tiet_th"] = $_POST["so_tiet_th"];
+
+            $where = "mahp = '{$r['mahp']}'";
+            $exp->update("hocphan",$data,$where);
+            echo "<script>"."window.location= '../production/admin_add_hocphan.php' "."</script>";
           } ?>
         </footer>
         <!-- /footer content -->
