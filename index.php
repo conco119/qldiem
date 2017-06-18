@@ -1,4 +1,5 @@
 <?php require 'layout/_header.php'; ?>
+<?php require 'model/DBPDO.php'; ?>
 <nav class="navbar navbar-default dh">
   <div class="container">
     <ul class="nav navbar-nav">
@@ -310,7 +311,11 @@
         <div class="body">
           <p class="text-center red">[THÔNG TIN ĐÁNG CHÚ Ý]</p>
           <div class="sub-body">
-
+            <?php
+              $sql = "SELECT * FROM sinhvien";
+              $r = $exp->fetch_all($sql);
+             ?>
+            
             <div class="info">
               <i class=" glyphicon glyphicon-arrow-right"></i>
               <a href="#">

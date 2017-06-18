@@ -269,7 +269,7 @@ if(empty($_SESSION["magv"]))
 
             <div class="x_panel">
               <div class="x_title">
-                <h2>Tìm kiếm</h2>
+                <h2>Tìm kiếm điểm sinh viên</h2>
                 <input type="text" name="" value="" placeholder="Nhập mã sinh viên" id="search" class="form-control" autocomplete="off">
                 <ul class="nav navbar-right panel_toolbox">
                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>

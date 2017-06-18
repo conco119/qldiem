@@ -10,7 +10,11 @@ if(empty($_SESSION["masv"]))
 // get thong tin sinh vien
   $sql  = "SELECT * FROM sinhvien,lop,nganh,khoa WHERE sinhvien.masv = '{$_SESSION['masv']}' and sinhvien.malop = lop.malop
     and lop.manganh = nganh.manganh and nganh.makhoa = khoa.makhoa";
-    $sql2 ="select * from sinhvien";
+    //$sql  = "SELECT * FROM sinhvien,lop,nganh,khoa WHERE 1>2";
+    //inhvien.masv = '{$_SESSION['masv']}' and sinhvien.malop = lop.malop
+    //  and lop.manganh = nganh.manganh and nganh.makhoa = khoa.makhoa";
+    //$sql2 ="select * from sinhvien";
+
   $r = $exp->fetch_one($sql);
 
  ?>
@@ -152,7 +156,7 @@ if(empty($_SESSION["masv"]))
                   <button id="save" style="display:none" type="submit" name="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok">Lưu</i></button>
 
                 </form>
-                
+
                 </div>
 
                 <div class=" col-md-9 col-lg-9 ">
