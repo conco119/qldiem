@@ -11,6 +11,8 @@
         and password='{$_POST['password']}' ";
       if($r=$exp->fetch_one($sql))
         {
+          if(isset( $_SESSION['masv']) )
+            unset($_SESSION['masv']);
           $_SESSION["magv"] = $r["magv"];
           if($r["role"] == "1")
           {

@@ -5,7 +5,7 @@ $host = "localhost";
 //Tài khoản PHP myadmin
 $tentaikhoan = "root";
 // mật khẩu PHP myadmin
-$matkhau = "";
+$matkhau = "1234";
 //Tên cơ sở dữ liệu
 $db = "diem";
 
@@ -50,6 +50,7 @@ class vsc_pdo {
 	 * @param unknown $sql
 	 * @return boolean
 	 */
+
 	function query($sql) {
 		$stmt = $this->conn->prepare($sql);
 		$this->query_id = $stmt->execute();

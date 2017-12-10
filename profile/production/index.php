@@ -60,6 +60,7 @@ if(empty($_SESSION["masv"]))
             <div class="profile clearfix">
 
               <div class="profile_info">
+                <p><a href="../../index.php"><i class="fa fa-arrow-left fa-5x" aria-hidden="true"></i></a></p>
                 <span>Xin chào</span>
                 <h2><?php echo $r["tensv"]; ?></h2>
               </div>
@@ -224,6 +225,9 @@ if(empty($_SESSION["masv"]))
         </div>
       </div>
     </div>
+
+
+
 
         <!-- footer content -->
         <footer style="background-color:#efefef">

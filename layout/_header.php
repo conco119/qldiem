@@ -11,7 +11,8 @@
 	<link rel="shortcut icon" href="images/utt-copy.png">
 	<link rel="stylesheet" href="style/animate.css">
 	<!-- Custom Stylesheet -->
-	<link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/style.css">
+	<link rel="stylesheet" href="style/comment.css">
 	<link id="bootstrap" rel="stylesheet" href="style/css/bootstrap.min.css">
 	<link id="gv" rel="stylesheet" href="#">
   <!-- jquery -->
