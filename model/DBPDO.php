@@ -24,6 +24,16 @@ class vsc_pdo {
 	public $query_id;
 
 
+	function addcomment() {
+		if(isset($_POST['submit'])) {
+	  $data['masv'] = $_POST['masv'];
+	  // $data['cmt'] = htmlentities($_POST['cmt'], ENT_QUOTES, "UTF-8");
+	  $data['cmt'] = $_POST['cmt'];
+	  $this->insert("comment",$data);
+
+}
+	}
+
 	/**
 	 * Build PDO connection
 	 * @param string $conn
@@ -212,6 +222,7 @@ class vsc_pdo {
 			$this->password = @$arr[2];
 			$this->database = @$arr[3];
 	}
+
 
 }
   //$exp = new vsc_pdo("$host,$tentaikhoan,$matkhau,$db");

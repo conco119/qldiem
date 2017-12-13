@@ -1,12 +1,30 @@
-PHPSESSID=h86ojk34qth3q7mrr14rioko5c; sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/66.4.108 Chrome/60.4.3112.108 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; reqtime=1512898682
-Sun Dec 10 2017 16:38:02 GMT 0700 ( 07)
+PHPSESSID=htrplate3phdck4s370ggfg864; sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; reqtime=1513070239
+Tue Dec 12 2017 16:17:19 GMT 0700 ( 07)
 -----------------------------------------
-PHPSESSID=h86ojk34qth3q7mrr14rioko5c; sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/66.4.108 Chrome/60.4.3112.108 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; reqtime=1512898686
-Sun Dec 10 2017 16:38:06 GMT 0700 ( 07)
+PHPSESSID=htrplate3phdck4s370ggfg864; sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; reqtime=1513098938
+Wed Dec 13 2017 00:15:38 GMT 0700 ( 07)
 -----------------------------------------
-PHPSESSID=v1gututbf80vo22g19tp3u4beq; sysinf=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=192.168.9.110; docrot=/Library/WebServer/Documents; reqtime=1512898940
-Sun Dec 10 2017 16:42:20 GMT 0700 (SE Asia Standard Time)
+PHPSESSID=htrplate3phdck4s370ggfg864; sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; reqtime=1513098946
+Wed Dec 13 2017 00:15:46 GMT 0700 ( 07)
 -----------------------------------------
-PHPSESSID=v1gututbf80vo22g19tp3u4beq; sysinf=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=192.168.9.110; docrot=/Library/WebServer/Documents; reqtime=1512898984
-Sun Dec 10 2017 16:43:04 GMT 0700 (SE Asia Standard Time)
+PHPSESSID=htrplate3phdck4s370ggfg864; sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; reqtime=1513098948
+Wed Dec 13 2017 00:15:48 GMT 0700 ( 07)
+-----------------------------------------
+PHPSESSID=4ijk2fpp1stv790mvl4op8v9e6; sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; reqtime=1513098955
+Wed Dec 13 2017 00:15:56 GMT 0700 ( 07)
+-----------------------------------------
+sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; PHPSESSID=htrplate3phdck4s370ggfg864; reqtime=1513098985
+Wed Dec 13 2017 00:16:25 GMT 0700 ( 07)
+-----------------------------------------
+sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; PHPSESSID=htrplate3phdck4s370ggfg864; reqtime=1513098989
+Wed Dec 13 2017 00:16:29 GMT 0700 ( 07)
+-----------------------------------------
+sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; PHPSESSID=htrplate3phdck4s370ggfg864; reqtime=1513099020
+Wed Dec 13 2017 00:17:00 GMT 0700 ( 07)
+-----------------------------------------
+PHPSESSID=htrplate3phdck4s370ggfg864; sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; reqtime=1513099061
+Wed Dec 13 2017 00:17:41 GMT 0700 ( 07)
+-----------------------------------------
+PHPSESSID=i2bc36at54j4ippm900rjll1ia; sysinf=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36; host=localhost; docrot=/Library/WebServer/Documents; reqtime=1513127578
+Wed Dec 13 2017 08:12:58 GMT 0700 ( 07)
 -----------------------------------------
